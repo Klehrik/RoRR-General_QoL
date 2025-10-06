@@ -1,5 +1,8 @@
 -- One-Shot Protection
 
+local packet = Packet.new()
+
+
 local setting = false
 
 local dropdown = options:add_checkbox("osp")
@@ -8,6 +11,24 @@ dropdown:add_getter(function()
 end)
 dropdown:add_setter(function(value)
     setting = value
+    if Net.host then packet:send_to_all(setting) end
+end)
+
+
+local host_setting = false
+
+packet:set_serializers(
+    function(buffer, setting)
+        buffer:write_ushort((setting and 1) or 0)
+    end,
+
+    function(buffer, player)
+        host_setting = Util.bool(buffer:read_ushort())
+    end
+)
+
+Hook.add_post(gm.constants.run_create, function(self, other, result, args)
+    if Net.host then packet:send_to_all(setting) end
 end)
 
 
@@ -15,8 +36,9 @@ local osp_window    = 30
 local iframes       = 45
 
 DamageCalculate.add(Callback.Priority.AFTER, function(api)
-    if not setting then return end
-    if Net.client then return end
+    if Net.client then
+        if not host_setting then return end
+    elseif not setting then return end
 
     local actor = api.hit
 
