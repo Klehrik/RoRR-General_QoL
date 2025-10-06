@@ -1,0 +1,10 @@
+﻿{
+	"name": "General_QoL",
+	"version_number": "1.0.0",
+	"website_url": "",
+	"description": "",
+	"dependencies": [
+		"ReturnOfModding-ReturnOfModding-1.1.5",
+		"ReturnsAPI-ReturnsAPI-1.0.0"
+	]
+}
