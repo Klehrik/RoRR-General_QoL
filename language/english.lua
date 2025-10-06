@@ -21,8 +21,8 @@ return {
                 osp                 = "One-shot Protection",
                 ["osp.desc"]        = "Prevent dying within a 0.5-second window while over 90% health.\n\n<y>Uses the host's setting.</c>",
 
-                tpColor             = "Teleporter Color",
-                ["tpColor.desc"]    = "Change the teleporter particle color.\n\n<y>Client-sided</c>",
+                tpColor             = "Teleporter Particle Color",
+                ["tpColor.desc"]    = "Modify the color of the teleporter particles.\n\n<y>Client-sided</c>",
                 ["tpColor.choice"]  = {
                     red     = "Red",
                     yellow  = "Yellow",
