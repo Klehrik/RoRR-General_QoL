@@ -1,4 +1,4 @@
--- One-Shot Protection
+-- One-shot Protection
 
 local packet = Packet.new()
 
