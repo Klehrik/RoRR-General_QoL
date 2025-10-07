@@ -1,8 +1,8 @@
 -- General QoL
 
-mods["LuaENVY-ENVY"].auto()
 mods["ReturnsAPI-ReturnsAPI"].auto{
-    namespace = "gqol"
+    namespace   = "gqol",
+    mp          = true
 }
 
 PATH = _ENV["!plugins_mod_folder_path"].."/"

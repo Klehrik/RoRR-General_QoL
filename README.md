@@ -1,4 +1,10 @@
-description
+Toggleable QoL settings for the following:
+- Full item descriptions
+- Huntress Blink invulnerability
+- No random damage numbers
+- One-shot protection
+- Sniper autofire
+- Teleporter particle color
 
 ---
 
