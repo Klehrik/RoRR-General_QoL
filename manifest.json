@@ -2,7 +2,7 @@
 	"name": "General_QoL",
 	"version_number": "1.0.0",
 	"website_url": "https://github.com/Klehrik/RoRR-General_QoL",
-	"description": "Toggleable settings for Full Item Descriptions, One-shot Protection, and more.",
+	"description": "Toggleable settings for full item descriptions, one-shot protection, holding interact, and more.",
 	"dependencies": [
 		"ReturnOfModding-ReturnOfModding-1.1.5",
 		"ReturnsAPI-ReturnsAPI-1.0.0"

@@ -32,8 +32,8 @@ end)
 Hook.add_pre(gm.constants.skill_activate, function(self, other, result, args)
     if setting ~= 1 then return end
     if args[1].value ~= Skill.Slot.PRIMARY then return end
+    if not self.is_local then return end
     if self.class ~= 7 then return end
-    if self ~= Player.get_local() then return end
 
     -- Get reload bar belonging to this game client
     local bar
@@ -46,6 +46,6 @@ Hook.add_pre(gm.constants.skill_activate, function(self, other, result, args)
     end
     if not bar then return end
 
-    -- Prevent reloading before the white zone (on first pass only)
-    if bar.position < 17 then return false end
+    -- Prevent reloading before the white zone (while the bar is moving right)
+    if bar.position < 17 and bar.pos_direction > 0 then return false end
 end)

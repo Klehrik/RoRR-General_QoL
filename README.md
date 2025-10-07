@@ -1,5 +1,6 @@
 Toggleable QoL settings for the following:
 - Full item descriptions
+- Hold to interact
 - Huntress Blink invulnerability
 - No random damage numbers
 - One-shot protection
