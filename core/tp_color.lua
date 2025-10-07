@@ -1,6 +1,6 @@
 -- Teleporter Color
 
-local setting = 0
+settings["tpColor"] = 0
 
 
 local colors = {
@@ -13,18 +13,19 @@ local colors = {
 
 local function set_color()
     for _, part in ipairs{Particle.find("TeleporterDust"), Particle.find("TeleporterDust2")} do
-        part:set_color1(colors[setting + 1])
+        part:set_color1(colors[settings["tpColor"] + 1])
     end
 end
 
 
 local dropdown = options:add_dropdown("tpColor")
 dropdown:add_getter(function()
-    return setting
+    return settings["tpColor"]
 end)
 dropdown:add_setter(function(value)
-    setting = value
-    set_color(setting)
+    settings["tpColor"] = value
+    file:write(settings)
+    set_color(settings["tpColor"])
 end)
 dropdown:add_choice(
     "ui.options.gqol.tpColor.choice.red",
@@ -36,5 +37,5 @@ dropdown:add_choice(
 
 
 Hook.add_post(gm.constants.run_create, function(self, other, result, args)
-    set_color(setting)
+    set_color(settings["tpColor"])
 end)

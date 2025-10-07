@@ -11,10 +11,16 @@ local fn = function()
     hotloaded = true
 
     options = ModOptions.new()
+    settings = {}
+    file = File.new()
     
     -- Require all files in core
     local names = path.get_files(PATH.."core")
     for _, name in ipairs(names) do require(name) end
+
+    -- Load settings from file
+    local t = file:read()
+    if t then settings = t end
 end
 Initialize.add(fn)
 if hotloaded then fn() end

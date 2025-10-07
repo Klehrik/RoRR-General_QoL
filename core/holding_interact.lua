@@ -1,26 +1,28 @@
--- Hold to Interact
+-- Holding Interact
 
-local setting = false
+settings["holdInteract"] = false
 
 local dropdown = options:add_checkbox("holdInteract")
 dropdown:add_getter(function()
-    return setting
+    return settings["holdInteract"]
 end)
 dropdown:add_setter(function(value)
-    setting = value
+    settings["holdInteract"] = value
+    file:write(settings)
 end)
 
 
 local cooldown_time = 20    -- In frames; prevent interacting every frame on the same interactable
 
 gm.pre_code_execute("gml_Object_pInteractable_Collision_oP", function(self, other)
-    if not setting then return end
+    if not settings["holdInteract"] then return end
     if (not other) or (not other.is_local) then return end
     current_interactable = self.id
 end)
 
 Hook.add_pre(gm.constants.control, function(self, other, result, args)
-    if not setting then return end
+    if not settings["holdInteract"] then return end
+    if not current_interactable then return end
 
     local current_frame = Global._current_frame
     local inst_data = Instance.get_data(current_interactable)

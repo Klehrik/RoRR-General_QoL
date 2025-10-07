@@ -3,32 +3,33 @@
 local packet = Packet.new()
 
 
-local setting = false
+settings["osp"] = false
 
 local dropdown = options:add_checkbox("osp")
 dropdown:add_getter(function()
-    return setting
+    return settings["osp"]
 end)
 dropdown:add_setter(function(value)
-    setting = value
-    if Net.host then packet:send_to_all(setting) end
+    settings["osp"] = value
+    file:write(settings)
+    if Net.host then packet:send_to_all(settings["osp"]) end
 end)
 
 
-local host_setting = false
+local host_settings = false
 
 packet:set_serializers(
-    function(buffer, setting)
-        buffer:write_ushort((setting and 1) or 0)
+    function(buffer, settings)
+        buffer:write_ushort((settings and 1) or 0)
     end,
 
     function(buffer, player)
-        host_setting = Util.bool(buffer:read_ushort())
+        host_settings = Util.bool(buffer:read_ushort())
     end
 )
 
 Hook.add_post(gm.constants.run_create, function(self, other, result, args)
-    if Net.host then packet:send_to_all(setting) end
+    if Net.host then packet:send_to_all(settings["osp"]) end
 end)
 
 
@@ -37,8 +38,8 @@ local iframes       = 45
 
 DamageCalculate.add(Callback.Priority.AFTER, function(api)
     if Net.client then
-        if not host_setting then return end
-    elseif not setting then return end
+        if not host_settings then return end
+    elseif not settings["osp"] then return end
 
     local actor = api.hit
 

@@ -1,22 +1,24 @@
 -- Sniper Autofire
 
-local function set_snipe_autofire(setting)
+settings["snipeAuto"] = 0
+
+
+local function set_snipe_autofire()
     for _, skill in ipairs{65, 70} do   -- sniperZ and sniperZReload
-        Skill.wrap(skill).require_key_press = ((setting == 0) and true) or false
+        Skill.wrap(skill).require_key_press = ((settings["snipeAuto"] == 0) and true) or false
     end
 end
 
 
-local setting = 0
-
 local dropdown = options:add_dropdown("snipeAuto")
 dropdown:add_getter(function()
-    set_snipe_autofire(setting)
-    return setting
+    set_snipe_autofire()
+    return settings["snipeAuto"]
 end)
 dropdown:add_setter(function(value)
-    setting = value
-    set_snipe_autofire(setting)
+    settings["snipeAuto"] = value
+    file:write(settings)
+    set_snipe_autofire()
 end)
 dropdown:add_choice(
     "ui.options.gqol.snipeAuto.choice.manual",
@@ -26,11 +28,11 @@ dropdown:add_choice(
 
 
 Hook.add_post(gm.constants.run_create, function(self, other, result, args)
-    set_snipe_autofire(setting)
+    set_snipe_autofire()
 end)
 
 Hook.add_pre(gm.constants.skill_activate, function(self, other, result, args)
-    if setting ~= 1 then return end
+    if settings["snipeAuto"] ~= 1 then return end
     if args[1].value ~= Skill.Slot.PRIMARY then return end
     if not self.is_local then return end
     if self.class ~= 7 then return end
