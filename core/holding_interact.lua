@@ -12,7 +12,7 @@ checkbox:add_setter(function(value)
 end)
 
 
-local cooldown_time = 20    -- In frames; prevent interacting every frame on the same interactable
+local cooldown_time = 30    -- In frames; prevent interacting every frame on the same interactable
 
 Hook.add_pre("gml_Object_pInteractable_Collision_oP", function(self, other)
     if not settings["holdInteract"] then return end
