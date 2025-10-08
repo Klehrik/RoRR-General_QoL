@@ -2,11 +2,11 @@
 
 settings["holdInteract"] = false
 
-local dropdown = options:add_checkbox("holdInteract")
-dropdown:add_getter(function()
+local checkbox = options:add_checkbox("holdInteract")
+checkbox:add_getter(function()
     return settings["holdInteract"]
 end)
-dropdown:add_setter(function(value)
+checkbox:add_setter(function(value)
     settings["holdInteract"] = value
     file:write(settings)
 end)

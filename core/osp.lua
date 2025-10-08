@@ -5,11 +5,11 @@ local packet = Packet.new()
 
 settings["osp"] = false
 
-local dropdown = options:add_checkbox("osp")
-dropdown:add_getter(function()
+local checkbox = options:add_checkbox("osp")
+checkbox:add_getter(function()
     return settings["osp"]
 end)
-dropdown:add_setter(function(value)
+checkbox:add_setter(function(value)
     settings["osp"] = value
     file:write(settings)
     if Net.host then packet:send_to_all(settings["osp"]) end

@@ -5,11 +5,11 @@ local packet = Packet.new()
 
 settings["blinkInv"] = false
 
-local dropdown = options:add_checkbox("blinkInv")
-dropdown:add_getter(function()
+local checkbox = options:add_checkbox("blinkInv")
+checkbox:add_getter(function()
     return settings["blinkInv"]
 end)
-dropdown:add_setter(function(value)
+checkbox:add_setter(function(value)
     settings["blinkInv"] = value
     file:write(settings)
     if Net.host then packet:send_to_all(settings["blinkInv"]) end

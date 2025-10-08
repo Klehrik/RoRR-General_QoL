@@ -2,11 +2,11 @@
 
 settings["noRndDmg"] = false
 
-local dropdown = options:add_checkbox("noRndDmg")
-dropdown:add_getter(function()
+local checkbox = options:add_checkbox("noRndDmg")
+checkbox:add_getter(function()
     return settings["noRndDmg"]
 end)
-dropdown:add_setter(function(value)
+checkbox:add_setter(function(value)
     settings["noRndDmg"] = value
     file:write(settings)
 end)

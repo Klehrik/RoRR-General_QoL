@@ -10,17 +10,17 @@ local function set_snipe_autofire()
 end
 
 
-local dropdown = options:add_dropdown("snipeAuto")
-dropdown:add_getter(function()
+local checkbox = options:add_dropdown("snipeAuto")
+checkbox:add_getter(function()
     set_snipe_autofire()
     return settings["snipeAuto"]
 end)
-dropdown:add_setter(function(value)
+checkbox:add_setter(function(value)
     settings["snipeAuto"] = value
     file:write(settings)
     set_snipe_autofire()
 end)
-dropdown:add_choice(
+checkbox:add_choice(
     "ui.options.gqol.snipeAuto.choice.manual",
     "ui.options.gqol.snipeAuto.choice.perfect",
     "ui.options.gqol.snipeAuto.choice.fast"
