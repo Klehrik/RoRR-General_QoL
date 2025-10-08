@@ -6,8 +6,8 @@ settings["tpColor"] = 0
 local colors = {
     Color(0xFF4934),    -- Standard red
     Color.YELLOW,
-    Color.BLUE,
     Color(0x00FFFF),    -- Cyan
+    Color.FUCHSIA,
     Color.WHITE,
 }
 
@@ -30,8 +30,8 @@ end)
 dropdown:add_choice(
     "ui.options.gqol.tpColor.choice.red",
     "ui.options.gqol.tpColor.choice.yellow",
-    "ui.options.gqol.tpColor.choice.blue",
     "ui.options.gqol.tpColor.choice.cyan",
+    "ui.options.gqol.tpColor.choice.pink",
     "ui.options.gqol.tpColor.choice.white"
 )
 

@@ -14,7 +14,7 @@ end)
 
 local cooldown_time = 20    -- In frames; prevent interacting every frame on the same interactable
 
-gm.pre_code_execute("gml_Object_pInteractable_Collision_oP", function(self, other)
+Hook.add_pre("gml_Object_pInteractable_Collision_oP", function(self, other)
     if not settings["holdInteract"] then return end
     if (not other) or (not other.is_local) then return end
     current_interactable = self.id

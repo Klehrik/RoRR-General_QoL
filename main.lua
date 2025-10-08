@@ -12,7 +12,7 @@ local fn = function()
 
     options = ModOptions.new()
     settings = {}
-    file = File.new()
+    file = TOML.new()
     
     -- Require all files in core
     local names = path.get_files(PATH.."core")
