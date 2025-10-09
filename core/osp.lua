@@ -3,16 +3,16 @@
 local packet = Packet.new("osp")
 
 
-settings["osp"] = false
+settings.osp = false
 
 local checkbox = options:add_checkbox("osp")
 checkbox:add_getter(function()
-    return settings["osp"]
+    return settings.osp
 end)
 checkbox:add_setter(function(value)
-    settings["osp"] = value
+    settings.osp = value
     file:write(settings)
-    if Net.host then packet:send_to_all(settings["osp"]) end
+    if Net.host then packet:send_to_all(settings.osp) end
 end)
 
 
@@ -29,7 +29,7 @@ packet:set_serializers(
 )
 
 Hook.add_post(gm.constants.run_create, function(self, other, result, args)
-    if Net.host then packet:send_to_all(settings["osp"]) end
+    if Net.host then packet:send_to_all(settings.osp) end
 end)
 
 
@@ -39,7 +39,7 @@ local iframes       = 45
 DamageCalculate.add(Callback.Priority.AFTER, function(api)
     if Net.client then
         if not host_settings then return end
-    elseif not settings["osp"] then return end
+    elseif not settings.osp then return end
 
     local actor = api.hit
 
