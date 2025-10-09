@@ -1,6 +1,6 @@
 -- One-shot Protection
 
-local packet = Packet.new()
+local packet = Packet.new("osp")
 
 
 settings["osp"] = false

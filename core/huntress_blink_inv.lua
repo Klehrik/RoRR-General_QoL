@@ -1,6 +1,6 @@
 -- Huntress Blink Invulnerability
 
-local packet = Packet.new()
+local packet = Packet.new("blinkInv")
 
 
 settings["blinkInv"] = false
