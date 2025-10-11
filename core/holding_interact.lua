@@ -22,7 +22,7 @@ end)
 
 Hook.add_pre(gm.constants.control, function(self, other, result, args)
     if not settings.holdInteract then return end
-    if not current_interactable then return end
+    if not Instance.exists(current_interactable) then return end
 
     local current_frame = Global._current_frame
     local inst_data = Instance.get_data(current_interactable)

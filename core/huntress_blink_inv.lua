@@ -20,11 +20,11 @@ local host_settings = false
 
 packet:set_serializers(
     function(buffer, settings)
-        buffer:write_ushort((settings and 1) or 0)
+        buffer:write_bool(settings)
     end,
 
     function(buffer, player)
-        host_settings = Util.bool(buffer:read_ushort())
+        host_settings = buffer:read_bool()
     end
 )
 
