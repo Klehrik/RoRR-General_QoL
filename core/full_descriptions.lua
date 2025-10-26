@@ -17,18 +17,36 @@ dropdown:add_choice(
 )
 
 
+local line_length = 80
+
 Hook.add_post(gm.constants.translate, function(self, other, result, args)
     if settings.fullDesc == 0
     or (not args[1].value:find("item"))
     or (not args[1].value:find("pickup")) then return end
 
+    local desc = gm.translate(args[1].value:gsub("pickup", "description"))
+
+    -- Insert breakpoints into `desc` every `line_length` chars after a space
+    local formatted = ""
+    local current = 1
+    local line_end = line_length
+    while line_end <= #desc do
+        if desc:sub(line_end, line_end) == " " then
+            formatted = formatted..desc:sub(current, line_end).."\n"
+            current = line_end + 1
+            line_end = line_end + line_length
+        else line_end = line_end + 1
+        end
+    end
+    formatted = formatted..desc:sub(current, #desc)
+
     -- Full descriptions
     if settings.fullDesc == 1 then
-        result.value = gm.translate(args[1].value:gsub("pickup", "description"))
+        result.value = formatted
 
     -- Pickup text + Full descriptions
     elseif settings.fullDesc == 2 then
-        result.value = "<ul>"..result.value.."</c>\n\n"..gm.translate(args[1].value:gsub("pickup", "description"))
+        result.value = "<ul>"..result.value.."</c>\n\n"..formatted
 
     end
 end)
