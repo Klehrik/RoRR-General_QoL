@@ -1,4 +1,4 @@
-Toggleable QoL settings for the following:
+Toggleable QoL settings (in-game Settings -> Mods) for the following:
 - Full item descriptions
 - Holding interact
 - Huntress Blink invulnerability
